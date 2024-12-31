@@ -1,5 +1,8 @@
 version = 1
 
+# JavaScript/TypeScript analyzer
+# Analyzes code quality, identifies anti-patterns, and enforces best practices
+# for JavaScript and TypeScript codebases
 [[analyzers]]
 name = "javascript"
 enabled = true
@@ -9,10 +12,28 @@ enabled = true
   dialect = "typescript"
   style_guide = "standard"
 
+  [analyzers.config]
+  max_file_size = 500 # Maximum file size in KB
+  max_function_size = 50 # Maximum lines of code per function
+  max_cyclomatic_complexity = 10 # Maximum allowed cyclomatic complexity
+
+# Test Coverage analyzer
+# Tracks code coverage metrics to ensure adequate testing
+# and identify untested code paths
 [[analyzers]]
 name = "test-coverage"
 enabled = true
 
+  [analyzers.config]
+  path = "coverage.out" # Specify the path to the coverage report
+  format = "lcov" # Specify the format of the coverage report
+
+# Prettier transformer
+# Automatically formats code according to Prettier rules
+# to maintain consistent code style across the project
 [[transformers]]
 name = "prettier"
 enabled = true
+
+# Additional Rules for PR size (using Danger)
+# While this can't be configured in DeepSource, add Danger rules to your CI/CD pipeline for PR size
